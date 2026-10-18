@@ -10,7 +10,7 @@
             --primary-red-hover: #b91c1c;
             --accent-red: #ef4444;
             --bg-dark: #09090b;
-            --card-black: #121215;
+            --card-black: rgba(18, 18, 21, 0.92);
             --card-border: #27272a;
             --text-main: #f4f4f5;
             --text-muted: #a1a1aa;
@@ -26,7 +26,9 @@
         }
 
         body {
-            background-color: var(--bg-dark);
+            background: linear-gradient(rgba(9, 9, 11, 0.88), rgba(9, 9, 11, 0.92)), 
+                        url('smsb.jpeg') no-repeat center center fixed;
+            background-size: cover;
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
@@ -42,6 +44,7 @@
 
         .card {
             background-color: var(--card-black);
+            backdrop-filter: blur(8px);
             border: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 32px;
@@ -81,7 +84,7 @@
         input, select {
             width: 100%;
             padding: 12px 14px;
-            background-color: var(--bg-dark);
+            background-color: rgba(9, 9, 11, 0.8);
             border: 1px solid var(--card-border);
             border-radius: 8px;
             color: var(--text-main);
@@ -138,6 +141,7 @@
             justify-content: space-between;
             align-items: center;
             background-color: var(--card-black);
+            backdrop-filter: blur(8px);
             padding: 24px 28px;
             border-radius: 16px;
             border: 1px solid var(--card-border);
@@ -193,6 +197,7 @@
 
         .stat-card {
             background-color: var(--card-black);
+            backdrop-filter: blur(8px);
             border: 1px solid var(--card-border);
             border-radius: 12px;
             padding: 20px;
@@ -236,6 +241,7 @@
         .search-box input {
             padding-left: 38px;
             background-color: var(--card-black);
+            backdrop-filter: blur(8px);
         }
 
         .search-icon {
@@ -267,6 +273,7 @@
         /* TABLE STYLES */
         .table-container {
             background-color: var(--card-black);
+            backdrop-filter: blur(8px);
             border-radius: 16px;
             border: 1px solid var(--card-border);
             overflow: hidden;
@@ -303,7 +310,7 @@
         }
 
         tr:hover td {
-            background-color: rgba(255, 255, 255, 0.02);
+            background-color: rgba(255, 255, 255, 0.04);
         }
 
         /* BADGES & BUTTONS */
@@ -315,16 +322,22 @@
             font-weight: 600;
         }
 
-        .badge-bsit {
-            background-color: rgba(220, 38, 38, 0.15);
-            color: #f87171;
-            border: 1px solid rgba(220, 38, 38, 0.3);
+        .badge-elem {
+            background-color: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.3);
         }
 
-        .badge-other {
+        .badge-jhs {
             background-color: rgba(37, 99, 235, 0.15);
             color: #60a5fa;
             border: 1px solid rgba(37, 99, 235, 0.3);
+        }
+
+        .badge-shs {
+            background-color: rgba(220, 38, 38, 0.15);
+            color: #f87171;
+            border: 1px solid rgba(220, 38, 38, 0.3);
         }
 
         .action-btns button {
@@ -363,7 +376,7 @@
             padding: 32px;
             border-radius: 16px;
             width: 100%;
-            max-width: 440px;
+            max-width: 450px;
             border: 1px solid var(--card-border);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
         }
@@ -398,7 +411,7 @@
         <div class="header">
             <div class="header-title">
                 <div class="red-dot"></div>
-                <h2>Student Management Dashboard</h2>
+                <h2>Student Management System</h2>
             </div>
             <button class="logout-btn" onclick="handleLogout()">Log Out</button>
         </div>
@@ -406,16 +419,16 @@
         <!-- STATS CARDS SUMMARY -->
         <div class="stats-grid">
             <div class="stat-card highlight">
-                <span class="stat-label">Total Records</span>
+                <span class="stat-label">Total Students</span>
                 <span class="stat-value" id="statTotal">0</span>
             </div>
             <div class="stat-card">
-                <span class="stat-label">BSIT Enrollees</span>
-                <span class="stat-value" id="statBsit">0</span>
+                <span class="stat-label">Elem & JHS (G1-G10)</span>
+                <span class="stat-value" id="statBasic">0</span>
             </div>
             <div class="stat-card">
-                <span class="stat-label">Other Programs</span>
-                <span class="stat-value" id="statOther">0</span>
+                <span class="stat-label">SHS Strands (G11-G12)</span>
+                <span class="stat-value" id="statShs">0</span>
             </div>
         </div>
 
@@ -433,8 +446,8 @@
                     <tr>
                         <th>Student ID</th>
                         <th>Full Name</th>
-                        <th>Course</th>
-                        <th>Year Level</th>
+                        <th>Grade / Strand</th>
+                        <th>Level Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -460,20 +473,37 @@
                     <input type="text" id="studName" required>
                 </div>
                 <div class="form-group">
-                    <label>Course</label>
+                    <label>Grade Level / Strand</label>
                     <select id="studCourse" required>
-                        <option value="BSIT">BSIT</option>
-                        <option value="BSCS">BSCS</option>
-                        <option value="BSIS">BSIS</option>
+                        <optgroup label="Elementary (Grade 1 - 6)">
+                            <option value="Grade 1">Grade 1</option>
+                            <option value="Grade 2">Grade 2</option>
+                            <option value="Grade 3">Grade 3</option>
+                            <option value="Grade 4">Grade 4</option>
+                            <option value="Grade 5">Grade 5</option>
+                            <option value="Grade 6">Grade 6</option>
+                        </optgroup>
+                        <optgroup label="Junior High School (Grade 7 - 10)">
+                            <option value="Grade 7">Grade 7</option>
+                            <option value="Grade 8">Grade 8</option>
+                            <option value="Grade 9">Grade 9</option>
+                            <option value="Grade 10">Grade 10</option>
+                        </optgroup>
+                        <optgroup label="Senior High School Strands (Grade 11 - 12)">
+                            <option value="STEM">STEM (Science & Tech)</option>
+                            <option value="ABM">ABM (Accountancy & Business)</option>
+                            <option value="HUMSS">HUMSS (Humanities & Social Sciences)</option>
+                            <option value="TVL">TVL (Technical-Vocational-Livelihood)</option>
+                            <option value="GAS">GAS (General Academic Strand)</option>
+                        </optgroup>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Year Level</label>
+                    <label>School Level Status</label>
                     <select id="studYear" required>
-                        <option value="1st Year">1st Year</option>
-                        <option value="2nd Year">2nd Year</option>
-                        <option value="3rd Year">3rd Year</option>
-                        <option value="4th Year">4th Year</option>
+                        <option value="Elementary">Elementary</option>
+                        <option value="Junior High School">Junior High School</option>
+                        <option value="Senior High School">Senior High School</option>
                     </select>
                 </div>
                 <div style="display: flex; gap: 10px; margin-top: 10px;">
@@ -486,8 +516,9 @@
 
     <script>
         let students = JSON.parse(localStorage.getItem('sms_students')) || [
-            { id: '2021007', name: 'Majorie Buendia', course: 'BSIT', year: '4th Year' },
-            { id: '210000', name: 'Bianca Nicole Sore', course: 'BSIT', year: '4th Year' }
+            { id: '2026-0001', name: 'Juan Dela Cruz', course: 'STEM', year: 'Senior High School' },
+            { id: '2026-0002', name: 'Maria Santos', course: 'Grade 10', year: 'Junior High School' },
+            { id: '2026-0003', name: 'Pedro Penduko', course: 'Grade 3', year: 'Elementary' }
         ];
 
         function handleLogin(e) {
@@ -513,9 +544,9 @@
 
         function updateStats() {
             document.getElementById('statTotal').innerText = students.length;
-            const bsitCount = students.filter(s => s.course === 'BSIT').length;
-            document.getElementById('statBsit').innerText = bsitCount;
-            document.getElementById('statOther').innerText = students.length - bsitCount;
+            const shsCount = students.filter(s => ['STEM', 'ABM', 'HUMSS', 'TVL', 'GAS'].includes(s.course) || s.year === 'Senior High School').length;
+            document.getElementById('statShs').innerText = shsCount;
+            document.getElementById('statBasic').innerText = students.length - shsCount;
         }
 
         function renderTable(data = students) {
@@ -529,7 +560,13 @@
             }
 
             data.forEach((stud, index) => {
-                const badgeClass = stud.course === 'BSIT' ? 'badge-bsit' : 'badge-other';
+                let badgeClass = 'badge-jhs';
+                if (stud.year === 'Elementary' || stud.course.includes('Grade 1') || stud.course.includes('Grade 2') || stud.course.includes('Grade 3') || stud.course.includes('Grade 4') || stud.course.includes('Grade 5') || stud.course.includes('Grade 6')) {
+                    badgeClass = 'badge-elem';
+                } else if (['STEM', 'ABM', 'HUMSS', 'TVL', 'GAS'].includes(stud.course) || stud.year === 'Senior High School') {
+                    badgeClass = 'badge-shs';
+                }
+
                 tbody.innerHTML += `
                     <tr>
                         <td style="font-weight: 600;">${stud.id}</td>
@@ -597,7 +634,7 @@
         function filterStudents() {
             const query = document.getElementById('searchInput').value.toLowerCase();
             const filtered = students.filter(s => 
-                s.name.toLowerCase().includes(query) || s.id.toLowerCase().includes(query)
+                s.name.toLowerCase().includes(query) || s.id.toLowerCase().includes(query) || s.course.toLowerCase().includes(query)
             );
             renderTable(filtered);
         }
