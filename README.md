@@ -47,8 +47,6 @@ The current implementation utilizes structured client-side JSON/data objects wit
 | `status`       | String    | Enrollment status (Active/Inactive)|
 
 ## 10. Screenshots
-*(Add your project screenshots here)*
-```markdown
 <img width="1311" height="607" alt="database" src="https://github.com/user-attachments/assets/512420a0-e2ab-4a9e-850d-458a8d147cfa" />
 <img width="1295" height="609" alt="Loginpreview" src="https://github.com/user-attachments/assets/4e1dcbdb-5bd3-48f0-be23-b8a2b8c404ad" />
 
