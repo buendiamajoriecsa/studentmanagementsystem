@@ -27,7 +27,7 @@
 
         body {
             background: linear-gradient(rgba(9, 9, 11, 0.88), rgba(9, 9, 11, 0.92)), 
-                        url('smsb.jpg') no-repeat center center fixed;
+                        url('smsbc.jpg') no-repeat center center fixed;
             background-size: cover;
             color: var(--text-main);
             min-height: 100vh;
@@ -190,7 +190,7 @@
         /* STATS CARDS */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 16px;
             margin-bottom: 24px;
         }
@@ -335,6 +335,12 @@
         }
 
         .badge-shs {
+            background-color: rgba(234, 179, 8, 0.15);
+            color: #facc15;
+            border: 1px solid rgba(234, 179, 8, 0.3);
+        }
+
+        .badge-college {
             background-color: rgba(220, 38, 38, 0.15);
             color: #f87171;
             border: 1px solid rgba(220, 38, 38, 0.3);
@@ -423,19 +429,23 @@
                 <span class="stat-value" id="statTotal">0</span>
             </div>
             <div class="stat-card">
-                <span class="stat-label">Elem & JHS (G1-G10)</span>
-                <span class="stat-value" id="statBasic">0</span>
+                <span class="stat-label">College (BSIT)</span>
+                <span class="stat-value" id="statBsit">0</span>
             </div>
             <div class="stat-card">
-                <span class="stat-label">SHS Strands (G11-G12)</span>
+                <span class="stat-label">Senior High (G11-12)</span>
                 <span class="stat-value" id="statShs">0</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Elem & JHS (G1-10)</span>
+                <span class="stat-value" id="statBasic">0</span>
             </div>
         </div>
 
         <div class="controls">
             <div class="search-box">
                 <span class="search-icon">🔍</span>
-                <input type="text" id="searchInput" placeholder="Search student name or ID..." onkeyup="filterStudents()">
+                <input type="text" id="searchInput" placeholder="Search student name, ID, or course..." onkeyup="filterStudents()">
             </div>
             <button class="add-btn" onclick="openModal()">+ Add Student</button>
         </div>
@@ -446,7 +456,7 @@
                     <tr>
                         <th>Student ID</th>
                         <th>Full Name</th>
-                        <th>Grade / Strand</th>
+                        <th>Course / Grade</th>
                         <th>Level Status</th>
                         <th>Actions</th>
                     </tr>
@@ -473,21 +483,10 @@
                     <input type="text" id="studName" required>
                 </div>
                 <div class="form-group">
-                    <label>Grade Level / Strand</label>
+                    <label>Course / Grade Level / Strand</label>
                     <select id="studCourse" required>
-                        <optgroup label="Elementary (Grade 1 - 6)">
-                            <option value="Grade 1">Grade 1</option>
-                            <option value="Grade 2">Grade 2</option>
-                            <option value="Grade 3">Grade 3</option>
-                            <option value="Grade 4">Grade 4</option>
-                            <option value="Grade 5">Grade 5</option>
-                            <option value="Grade 6">Grade 6</option>
-                        </optgroup>
-                        <optgroup label="Junior High School (Grade 7 - 10)">
-                            <option value="Grade 7">Grade 7</option>
-                            <option value="Grade 8">Grade 8</option>
-                            <option value="Grade 9">Grade 9</option>
-                            <option value="Grade 10">Grade 10</option>
+                        <optgroup label="College Program">
+                            <option value="BSIT">BSIT (Bachelor of Science in Information Technology)</option>
                         </optgroup>
                         <optgroup label="Senior High School Strands (Grade 11 - 12)">
                             <option value="STEM">STEM (Science & Tech)</option>
@@ -496,14 +495,29 @@
                             <option value="TVL">TVL (Technical-Vocational-Livelihood)</option>
                             <option value="GAS">GAS (General Academic Strand)</option>
                         </optgroup>
+                        <optgroup label="Junior High School (Grade 7 - 10)">
+                            <option value="Grade 7">Grade 7</option>
+                            <option value="Grade 8">Grade 8</option>
+                            <option value="Grade 9">Grade 9</option>
+                            <option value="Grade 10">Grade 10</option>
+                        </optgroup>
+                        <optgroup label="Elementary (Grade 1 - 6)">
+                            <option value="Grade 1">Grade 1</option>
+                            <option value="Grade 2">Grade 2</option>
+                            <option value="Grade 3">Grade 3</option>
+                            <option value="Grade 4">Grade 4</option>
+                            <option value="Grade 5">Grade 5</option>
+                            <option value="Grade 6">Grade 6</option>
+                        </optgroup>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>School Level Status</label>
                     <select id="studYear" required>
-                        <option value="Elementary">Elementary</option>
-                        <option value="Junior High School">Junior High School</option>
+                        <option value="College">College</option>
                         <option value="Senior High School">Senior High School</option>
+                        <option value="Junior High School">Junior High School</option>
+                        <option value="Elementary">Elementary</option>
                     </select>
                 </div>
                 <div style="display: flex; gap: 10px; margin-top: 10px;">
@@ -516,9 +530,9 @@
 
     <script>
         let students = JSON.parse(localStorage.getItem('sms_students')) || [
-            { id: '2026-0001', name: 'Juan Dela Cruz', course: 'STEM', year: 'Senior High School' },
-            { id: '2026-0002', name: 'Maria Santos', course: 'Grade 10', year: 'Junior High School' },
-            { id: '2026-0003', name: 'Pedro Penduko', course: 'Grade 3', year: 'Elementary' }
+            { id: '2021007', name: 'Majorie Buendia', course: 'BSIT', year: 'College' },
+            { id: '210000', name: 'Bianca Nicole Sore', course: 'BSIT', year: 'College' },
+            { id: '2026-0001', name: 'Juan Dela Cruz', course: 'STEM', year: 'Senior High School' }
         ];
 
         function handleLogin(e) {
@@ -544,9 +558,12 @@
 
         function updateStats() {
             document.getElementById('statTotal').innerText = students.length;
+            const bsitCount = students.filter(s => s.course === 'BSIT' || s.year === 'College').length;
             const shsCount = students.filter(s => ['STEM', 'ABM', 'HUMSS', 'TVL', 'GAS'].includes(s.course) || s.year === 'Senior High School').length;
+            
+            document.getElementById('statBsit').innerText = bsitCount;
             document.getElementById('statShs').innerText = shsCount;
-            document.getElementById('statBasic').innerText = students.length - shsCount;
+            document.getElementById('statBasic').innerText = students.length - (bsitCount + shsCount);
         }
 
         function renderTable(data = students) {
@@ -561,10 +578,12 @@
 
             data.forEach((stud, index) => {
                 let badgeClass = 'badge-jhs';
-                if (stud.year === 'Elementary' || stud.course.includes('Grade 1') || stud.course.includes('Grade 2') || stud.course.includes('Grade 3') || stud.course.includes('Grade 4') || stud.course.includes('Grade 5') || stud.course.includes('Grade 6')) {
-                    badgeClass = 'badge-elem';
+                if (stud.course === 'BSIT' || stud.year === 'College') {
+                    badgeClass = 'badge-college';
                 } else if (['STEM', 'ABM', 'HUMSS', 'TVL', 'GAS'].includes(stud.course) || stud.year === 'Senior High School') {
                     badgeClass = 'badge-shs';
+                } else if (stud.year === 'Elementary' || stud.course.includes('Grade 1') || stud.course.includes('Grade 2') || stud.course.includes('Grade 3') || stud.course.includes('Grade 4') || stud.course.includes('Grade 5') || stud.course.includes('Grade 6')) {
+                    badgeClass = 'badge-elem';
                 }
 
                 tbody.innerHTML += `
