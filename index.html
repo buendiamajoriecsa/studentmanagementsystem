@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Management System - Datamex College of Saint Adeline</title>
+    <title>DCSA System Login - Student Management System</title>
     <style>
         :root {
             --primary-red: #dc2626;
@@ -36,7 +36,7 @@
 
         .container {
             width: 100%;
-            max-width: 440px;
+            max-width: 420px;
             padding: 20px;
         }
 
@@ -49,41 +49,13 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
         }
 
-        /* SCHOOL BRANDING HEADER */
-        .school-banner {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(220, 38, 38, 0.4);
-            border-radius: 16px;
-            padding: 20px 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-        }
-
-        .school-logo {
-            width: 65px;
-            height: 65px;
-            object-fit: contain;
-        }
-
-        .school-info h1 {
+        .login-title {
             font-size: 20px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-align: center;
             color: #ffffff;
-            text-align: left;
-        }
-
-        .school-info p.motto {
-            font-size: 12px;
-            font-style: italic;
-            color: var(--gold-accent);
-            margin-top: 4px;
-            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .form-group {
@@ -378,17 +350,8 @@
 
     <!-- LOGIN SCREEN -->
     <div id="loginScreen" class="container">
-        <!-- SCHOOL BRANDING HEADER -->
-        <div class="school-banner">
-            <img src="logo.png" alt="School Logo" class="school-logo" onerror="this.style.display='none'">
-            <div class="school-info">
-                <h1>Datamex College of Saint Adeline</h1>
-                <p class="motto">"Every student matters, Every moment counts, WE BUILD FUTURES!"</p>
-            </div>
-        </div>
-
         <div class="card">
-            <h2 style="font-size: 18px; margin-bottom: 20px; text-align: center; color: var(--text-muted);">Student Management System Login</h2>
+            <h1 class="login-title">DCSA System Login</h1>
             <form id="loginForm" onsubmit="handleLogin(event)">
                 <div class="form-group">
                     <label>Username</label>
