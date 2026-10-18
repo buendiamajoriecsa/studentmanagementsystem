@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Management System - Project 1</title>
+    <title>Student Management System - Datamex College of Saint Adeline</title>
     <style>
         :root {
             --primary-red: #dc2626;
             --primary-red-hover: #b91c1c;
             --accent-red: #ef4444;
-            --bg-dark: #09090b;
-            --card-black: rgba(18, 18, 21, 0.92);
+            --card-black: rgba(0, 0, 0, 0.85);
             --card-border: #27272a;
-            --text-main: #f4f4f5;
-            --text-muted: #a1a1aa;
-            --success: #16a34a;
-            --blue-badge: #2563eb;
+            --text-main: #ffffff;
+            --text-muted: #d4d4d8;
+            --gold-accent: #fbbf24;
         }
 
         * {
@@ -25,9 +23,9 @@
             font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
         }
 
+        /* VISIBLE AND CLEAR BACKGROUND */
         body {
-            background: linear-gradient(rgba(9, 9, 11, 0.88), rgba(9, 9, 11, 0.92)), 
-                        url('smsbc.jpg') no-repeat center center fixed;
+            background: url('smsbc.jpg') no-repeat center center fixed;
             background-size: cover;
             color: var(--text-main);
             min-height: 100vh;
@@ -38,35 +36,54 @@
 
         .container {
             width: 100%;
-            max-width: 420px;
+            max-width: 440px;
             padding: 20px;
         }
 
         .card {
             background-color: var(--card-black);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 32px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
         }
 
-        h1, h2 {
-            text-align: center;
-            color: var(--text-main);
-        }
-
-        .login-header h1 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .login-header p {
-            color: var(--text-muted);
-            font-size: 13px;
-            text-align: center;
+        /* SCHOOL BRANDING HEADER */
+        .school-banner {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(220, 38, 38, 0.4);
+            border-radius: 16px;
+            padding: 20px 24px;
             margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .school-logo {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+        }
+
+        .school-info h1 {
+            font-size: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .school-info p.motto {
+            font-size: 12px;
+            font-style: italic;
+            color: var(--gold-accent);
+            margin-top: 4px;
+            font-weight: 600;
         }
 
         .form-group {
@@ -84,7 +101,7 @@
         input, select {
             width: 100%;
             padding: 12px 14px;
-            background-color: rgba(9, 9, 11, 0.8);
+            background-color: rgba(18, 18, 21, 0.9);
             border: 1px solid var(--card-border);
             border-radius: 8px;
             color: var(--text-main);
@@ -95,7 +112,7 @@
         input:focus, select:focus {
             outline: none;
             border-color: var(--primary-red);
-            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.3);
         }
 
         .btn-primary {
@@ -113,10 +130,6 @@
 
         .btn-primary:hover {
             background-color: var(--primary-red-hover);
-        }
-
-        .btn-primary:active {
-            transform: scale(0.98);
         }
 
         .error-msg {
@@ -141,38 +154,32 @@
             justify-content: space-between;
             align-items: center;
             background-color: var(--card-black);
-            backdrop-filter: blur(8px);
-            padding: 24px 28px;
+            backdrop-filter: blur(10px);
+            padding: 20px 28px;
             border-radius: 16px;
             border: 1px solid var(--card-border);
             margin-bottom: 24px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
         }
 
-        .header-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .header-title h2 {
-            font-size: 22px;
+        .header-brand h2 {
+            font-size: 20px;
             font-weight: 700;
-            letter-spacing: -0.5px;
+            text-align: left;
+            color: #ffffff;
         }
 
-        .red-dot {
-            width: 10px;
-            height: 10px;
-            background-color: var(--primary-red);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--primary-red);
+        .header-brand p {
+            font-size: 12px;
+            color: var(--gold-accent);
+            font-style: italic;
+            font-weight: 500;
         }
 
         .logout-btn {
-            background-color: transparent;
-            color: var(--accent-red);
-            border: 1px solid rgba(239, 68, 68, 0.3);
+            background-color: rgba(220, 38, 38, 0.2);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.4);
             width: auto;
             padding: 8px 18px;
             border-radius: 8px;
@@ -183,8 +190,8 @@
         }
 
         .logout-btn:hover {
-            background-color: rgba(239, 68, 68, 0.1);
-            border-color: var(--accent-red);
+            background-color: var(--primary-red);
+            color: #ffffff;
         }
 
         /* STATS CARDS */
@@ -197,13 +204,14 @@
 
         .stat-card {
             background-color: var(--card-black);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--card-border);
             border-radius: 12px;
             padding: 20px;
             display: flex;
             flex-direction: column;
             gap: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
         .stat-label {
@@ -215,7 +223,7 @@
         .stat-value {
             font-size: 28px;
             font-weight: 700;
-            color: var(--text-main);
+            color: #ffffff;
         }
 
         .stat-card.highlight {
@@ -241,7 +249,7 @@
         .search-box input {
             padding-left: 38px;
             background-color: var(--card-black);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
         }
 
         .search-icon {
@@ -273,11 +281,11 @@
         /* TABLE STYLES */
         .table-container {
             background-color: var(--card-black);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
             border-radius: 16px;
             border: 1px solid var(--card-border);
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
         }
 
         table {
@@ -291,7 +299,7 @@
         }
 
         th {
-            background-color: rgba(255, 255, 255, 0.02);
+            background-color: rgba(255, 255, 255, 0.05);
             font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 0.8px;
@@ -301,7 +309,7 @@
         }
 
         td {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             font-size: 14px;
         }
 
@@ -310,7 +318,7 @@
         }
 
         tr:hover td {
-            background-color: rgba(255, 255, 255, 0.04);
+            background-color: rgba(255, 255, 255, 0.06);
         }
 
         /* BADGES & BUTTONS */
@@ -322,29 +330,10 @@
             font-weight: 600;
         }
 
-        .badge-elem {
-            background-color: rgba(34, 197, 94, 0.15);
-            color: #4ade80;
-            border: 1px solid rgba(34, 197, 94, 0.3);
-        }
-
-        .badge-jhs {
-            background-color: rgba(37, 99, 235, 0.15);
-            color: #60a5fa;
-            border: 1px solid rgba(37, 99, 235, 0.3);
-        }
-
-        .badge-shs {
-            background-color: rgba(234, 179, 8, 0.15);
-            color: #facc15;
-            border: 1px solid rgba(234, 179, 8, 0.3);
-        }
-
-        .badge-college {
-            background-color: rgba(220, 38, 38, 0.15);
-            color: #f87171;
-            border: 1px solid rgba(220, 38, 38, 0.3);
-        }
+        .badge-elem { background-color: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.4); }
+        .badge-jhs { background-color: rgba(37, 99, 235, 0.2); color: #60a5fa; border: 1px solid rgba(37, 99, 235, 0.4); }
+        .badge-shs { background-color: rgba(234, 179, 8, 0.2); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.4); }
+        .badge-college { background-color: rgba(220, 38, 38, 0.2); color: #f87171; border: 1px solid rgba(220, 38, 38, 0.4); }
 
         .action-btns button {
             width: auto;
@@ -358,10 +347,7 @@
             transition: opacity 0.2s;
         }
 
-        .action-btns button:hover {
-            opacity: 0.85;
-        }
-
+        .action-btns button:hover { opacity: 0.85; }
         .btn-edit { background-color: #27272a; color: var(--text-main); border: 1px solid var(--card-border) !important; }
         .btn-delete { background-color: rgba(239, 68, 68, 0.2); color: #f87171; }
 
@@ -370,8 +356,8 @@
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(4px);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(6px);
             justify-content: center;
             align-items: center;
             z-index: 1000;
@@ -384,7 +370,7 @@
             width: 100%;
             max-width: 450px;
             border: 1px solid var(--card-border);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
         }
     </style>
 </head>
@@ -392,11 +378,17 @@
 
     <!-- LOGIN SCREEN -->
     <div id="loginScreen" class="container">
-        <div class="card">
-            <div class="login-header">
-                <h1>System Login</h1>
-                <p>Student Management System</p>
+        <!-- SCHOOL BRANDING HEADER -->
+        <div class="school-banner">
+            <img src="logo.png" alt="School Logo" class="school-logo" onerror="this.style.display='none'">
+            <div class="school-info">
+                <h1>Datamex College of Saint Adeline</h1>
+                <p class="motto">"Every student matters, Every moment counts, WE BUILD FUTURES!"</p>
             </div>
+        </div>
+
+        <div class="card">
+            <h2 style="font-size: 18px; margin-bottom: 20px; text-align: center; color: var(--text-muted);">Student Management System Login</h2>
             <form id="loginForm" onsubmit="handleLogin(event)">
                 <div class="form-group">
                     <label>Username</label>
@@ -415,9 +407,9 @@
     <!-- DASHBOARD SCREEN -->
     <div id="dashboardApp">
         <div class="header">
-            <div class="header-title">
-                <div class="red-dot"></div>
-                <h2>Student Management System</h2>
+            <div class="header-brand">
+                <h2>Datamex College of Saint Adeline</h2>
+                <p>"Every student matters, Every moment counts, WE BUILD FUTURES!"</p>
             </div>
             <button class="logout-btn" onclick="handleLogout()">Log Out</button>
         </div>
@@ -531,8 +523,7 @@
     <script>
         let students = JSON.parse(localStorage.getItem('sms_students')) || [
             { id: '2021007', name: 'Majorie Buendia', course: 'BSIT', year: 'College' },
-            { id: '210000', name: 'Bianca Nicole Sore', course: 'BSIT', year: 'College' },
-            { id: '2026-0001', name: 'Juan Dela Cruz', course: 'STEM', year: 'Senior High School' }
+            { id: '210000', name: 'Bianca Nicole Sore', course: 'BSIT', year: 'College' }
         ];
 
         function handleLogin(e) {
