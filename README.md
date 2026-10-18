@@ -1,39 +1,53 @@
-# Student Management System (Project 1)
+# Student Management System
 
-## Overview
-A web-based Student Management System designed to streamline student data management, course tracking, and record updates efficiently.
+## 1. Project Title
+**Student Management System**
 
-## Problem Statement
-Educational institutions need an organized, accessible, and error-free system to manage student records without relying purely on manual paperwork or complex, fragmented spreadsheets.
+## 2. Project Overview
+The **Student Management System** is a lightweight, responsive web application designed to simplify and streamline the process of managing student records. Hosted directly on GitHub Pages, it provides an accessible interface for administrators and educators to store, search, and manage student information efficiently.
 
-## Objectives
-- Provide a secure login authentication layer for administrators.
-- Implement full CRUD (Create, Read, Update, Delete) operations for student records.
-- Enable real-time search functionality to quickly locate student data.
-- Utilize local storage as a lightweight database solution.
+## 3. Problem Statement
+Educational institutions often struggle with manual, paper-based student record tracking or overly complex legacy databases that require expensive setup and maintenance. These traditional methods can lead to data redundancy, difficulties in searching for student records, and higher chances of data entry errors.
 
-## Target Users
-- School administrators, registrars, and instructors evaluating system workflows.
+## 4. Objectives
+* To digitize student record tracking using a web-based interface.
+* To provide quick search and filtering capabilities for student profiles.
+* To reduce data entry errors and simplify record organization.
+* To deploy a lightweight, zero-cost, and easily accessible application via GitHub Pages.
 
-## Technologies Used
-- **HTML5 & CSS3**: Custom Dark Theme UI for accessible user experience.
-- **JavaScript (ES6+)**: Handles dynamic manipulation and core system logic.
-- **HTML5 LocalStorage**: Serves as the client-side database mechanism.
+## 5. Target Users
+* **School Administrators / Staff:** For efficient record keeping, search, and updates.
+* **Instructors / Teachers:** To view student details and class lists quickly.
+* **Students:** To view basic academic profile information.
 
-## Database Design & Storage
-This application utilizes **Browser LocalStorage** as a persistent database across sessions.
-- **Storage Key:** `sms_students`
-- **Data Structure (JSON Array of Objects):**
-  ```json
-  [
-    {
-      "id": "2021007",
-      "name": "Majorie Buendia",
-      "course": "BSIT",
-      "year": "4th Year"
-    }
-  ]
+## 6. Technologies Used
+* **Frontend:** HTML5, CSS3
+* **Hosting & Deployment:** GitHub Pages
+* **Storage / Handling:** Client-side local storage / JavaScript record handling
 
-SOURCE CODE:
+## 7. System Features
+* **Authentication:** Secure login interface for system users.
+* **Student Record Search & Filter:** Quick search bar to locate specific student profiles by ID or Name.
+* **Record Management:** Add, view, edit, and organize basic student information.
+* **Responsive Layout:** Clean user interface optimized for desktop and mobile viewing.
 
-view-source:https://buendiamajoriecsa.github.io/studentmanagementsystem/
+## 8. System Architecture
+The application runs as a static web application hosted on **GitHub Pages**. User requests are handled on the client-side browser, ensuring fast loading times and smooth interaction without the need for complex server configurations.
+
+## 9. Database Design
+The current implementation utilizes structured client-side JSON/data objects with the following schema:
+
+| Field Name     | Data Type | Description                      |
+| -------------- | --------- | -------------------------------- |
+| `student_id`   | String    | Unique identification number     |
+| `full_name`    | String    | Complete name of the student     |
+| `course`       | String    | Academic program / course enrolled|
+| `year_level`   | String    | Current academic year level      |
+| `email`        | String    | Contact email address            |
+| `status`       | String    | Enrollment status (Active/Inactive)|
+
+## 10. Screenshots
+*(Add your project screenshots here)*
+```markdown
+![Login Screen](assets/login-preview.png)
+![Dashboard Overview](assets/dashboard-preview.png)
